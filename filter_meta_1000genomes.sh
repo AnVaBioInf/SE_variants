@@ -21,12 +21,7 @@ curl 'https://www.internationalgenome.org/api/beta/sample/_search/igsr-1000%20ge
   -H 'sec-ch-ua-platform: "Linux"' \
   --data-raw 'json=%7B%22fields%22%3A%5B%22name%22%2C%22sex%22%2C%22biosampleId%22%2C%22populations.code%22%2C%22populations.name%22%2C%22populations.superpopulationCode%22%2C%22populations.superpopulationName%22%2C%22populations.elasticId%22%2C%22dataCollections.title%22%5D%2C%22column_names%22%3A%5B%22Sample+name%22%2C%22Sex%22%2C%22Biosample+ID%22%2C%22Population+code%22%2C%22Population+name%22%2C%22Superpopulation+code%22%2C%22Superpopulation+name%22%2C%22Population+elastic+ID%22%2C%22Data+collections%22%5D%2C%22query%22%3A%7B%22constant_score%22%3A%7B%22filter%22%3A%7B%22term%22%3A%7B%22dataCollections.title%22%3A%221000+Genomes+30x+on+GRCh38%22%7D%7D%7D%7D%7D' > samples_meta_1000Genomes30xGRCh38.csv
 
-# filtering samples by race and gender (european male)
-awk '$2=="male" && $6=="EUR" {print}' samples_meta_1000Genomes30xGRCh38.csv > samples_meta_male_eur_1000Genomes30xGRCh38.csv 
-
 # selecting 20 samples from each subpopulation, to make the sample balanced
-awk '$4=="TSI" {print $0}' samples_meta_male_eur_1000Genomes30xGRCh38.csv | head -20  > samples_meta_male_eur_100_1000Genomes30xGRCh38.csv 
-awk '$4=="FIN" {print $0}' samples_meta_male_eur_1000Genomes30xGRCh38.csv | head -20 >> samples_meta_male_eur_100_1000Genomes30xGRCh38.csv 
-awk '$4=="IBS" {print $0}' samples_meta_male_eur_1000Genomes30xGRCh38.csv | head -20 >> samples_meta_male_eur_100_1000Genomes30xGRCh38.csv 
-awk '$4=="CEU" {print $0}' samples_meta_male_eur_1000Genomes30xGRCh38.csv | head -20 >> samples_meta_male_eur_100_1000Genomes30xGRCh38.csv 
-awk '$4=="GBR" {print $0}' samples_meta_male_eur_1000Genomes30xGRCh38.csv | head -20 >> samples_meta_male_eur_100_1000Genomes30xGRCh38.csv 
+awk '$2=="male" && $4=="TSI" {print $0}' samples_meta_1000Genomes30xGRCh38.csv | head -33  > samples_meta_male_eur_100_1000Genomes30xGRCh38.csv 
+awk '$2=="male" && $4=="IBS" {print $0}' samples_meta_1000Genomes30xGRCh38.csv | head -33 >> samples_meta_male_eur_100_1000Genomes30xGRCh38.csv 
+awk '$2=="male" && $4=="GBR" {print $0}' samples_meta_1000Genomes30xGRCh38.csv | head -34 >> samples_meta_male_eur_100_1000Genomes30xGRCh38.csv 
