@@ -5,6 +5,8 @@
 # F12 key -> Network
 # Download file locally, find it in Network, right click it and choose copy->copy as cURL
 
+mkdir ~/project/variants && cd $_
+
 # download samples metadata
 curl 'https://www.internationalgenome.org/api/beta/sample/_search/igsr-1000%20genomes%2030x%20on%20grch38.tsv.tsv' \
   -H 'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7' \
@@ -25,7 +27,8 @@ curl 'https://www.internationalgenome.org/api/beta/sample/_search/igsr-1000%20ge
   -H 'sec-ch-ua: "Google Chrome";v="125", "Chromium";v="125", "Not.A/Brand";v="24"' \
   -H 'sec-ch-ua-mobile: ?0' \
   -H 'sec-ch-ua-platform: "Linux"' \
-  --data-raw 'json=%7B%22fields%22%3A%5B%22name%22%2C%22sex%22%2C%22biosampleId%22%2C%22populations.code%22%2C%22populations.name%22%2C%22populations.superpopulationCode%22%2C%22populations.superpopulationName%22%2C%22populations.elasticId%22%2C%22dataCollections.title%22%5D%2C%22column_names%22%3A%5B%22Sample+name%22%2C%22Sex%22%2C%22Biosample+ID%22%2C%22Population+code%22%2C%22Population+name%22%2C%22Superpopulation+code%22%2C%22Superpopulation+name%22%2C%22Population+elastic+ID%22%2C%22Data+collections%22%5D%2C%22query%22%3A%7B%22constant_score%22%3A%7B%22filter%22%3A%7B%22term%22%3A%7B%22dataCollections.title%22%3A%221000+Genomes+30x+on+GRCh38%22%7D%7D%7D%7D%7D' > samples_meta_1000Genomes30xGRCh38.csv
+  --data-raw 'json=%7B%22fields%22%3A%5B%22name%22%2C%22sex%22%2C%22biosampleId%22%2C%22populations.code%22%2C%22populations.name%22%2C%22populations.superpopulationCode%22%2C%22populations.superpopulationName%22%2C%22populations.elasticId%22%2C%22dataCollections.title%22%5D%2C%22column_names%22%3A%5B%22Sample+name%22%2C%22Sex%22%2C%22Biosample+ID%22%2C%22Population+code%22%2C%22Population+name%22%2C%22Superpopulation+code%22%2C%22Superpopulation+name%22%2C%22Population+elastic+ID%22%2C%22Data+collections%22%5D%2C%22query%22%3A%7B%22constant_score%22%3A%7B%22filter%22%3A%7B%22term%22%3A%7B%22dataCollections.title%22%3A%221000+Genomes+30x+on+GRCh38%22%7D%7D%7D%7D%7D' \
+  > samples_meta_1000Genomes30xGRCh38.csv
 
 # exploring the file
 # number of records for target group (European males)
